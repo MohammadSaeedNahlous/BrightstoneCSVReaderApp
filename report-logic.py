@@ -75,7 +75,6 @@ def initialize_markdown_report(
         "</p>"
     )
 
-    
     return report
 
 
