@@ -11,7 +11,6 @@ from exceptions import (
 def read_csv(file_path):
 
     with open(file_path, newline="", encoding="utf-8") as file:
-
         reader = csv.DictReader(file)
         required_columns = {
             "order_id",

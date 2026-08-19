@@ -13,18 +13,15 @@ def generate_json_report(
     timestamp = dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     data = {
-        "generated at": timestamp,
-        "total number of order": total_number_of_orders,
-        "total revenue": total_revenue,
-        "top 5 products by revenue": top_5_products_by_revenue,
-        "top 5 customers by total spend": top_5_customers_by_total_spend,
-        "revenue by category": revenue_by_category,
+        "total_number_of_order": total_number_of_orders,
+        "total_revenue": total_revenue,
+        "top_5_products_by_revenue": top_5_products_by_revenue,
+        "top_5_customers_by_total_spend": top_5_customers_by_total_spend,
+        "revenue_by_category": revenue_by_category,
+        "created_at": timestamp,
     }
-    try:
-        with open(file_name, "w", encoding="utf-8") as file:
-            json.dump(data, file, indent=4)
-    except OSError as error:
-        print(f"Could not create the report: {error}")
+    with open(file_name, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4)
 
 
 def initialize_markdown_report(
@@ -83,20 +80,16 @@ def generate_markdown_report(
     revenue_by_category,
     file_name,
 ):
-    try:
-        timestamp = dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    timestamp = dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-        report = initialize_markdown_report(
-            total_number_of_orders,
-            total_revenue,
-            top_5_products_by_price,
-            top_5_customers_by_total_spend,
-            revenue_by_category,
-            timestamp,
-        )
+    report = initialize_markdown_report(
+        total_number_of_orders,
+        total_revenue,
+        top_5_products_by_price,
+        top_5_customers_by_total_spend,
+        revenue_by_category,
+        timestamp,
+    )
 
-        with open(file_name, "w", encoding="utf-8") as file:
-            file.write(report)
-
-    except OSError as error:
-        print(f"Could not create the report: {error}")
+    with open(file_name, "w", encoding="utf-8") as file:
+        file.write(report)

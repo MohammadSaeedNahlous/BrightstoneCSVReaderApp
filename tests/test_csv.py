@@ -66,4 +66,3 @@ def test_broken_row_due_missing_values(tmp_path):
 
     with pytest.raises(InvalidCSVRow):
         read_csv(csv_file)
-

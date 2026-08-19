@@ -19,6 +19,7 @@ def test_total_orders():
 
     assert result == 3
 
+
 def test_total_revenue():
     orders = [
         Order("1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"),
@@ -40,9 +41,9 @@ def test_top_5_products_by_revenue():
         Order("5", "2026-08-19", "Eva", "Monitor", "Electronics", "4", "250"),
         Order("6", "2026-08-19", "Frank", "Keyboard", "Electronics", "1", "50"),
     ]
-    
+
     result = get_top_products_by_revenue(orders)
-    
+
     assert len(result) == 5
     assert result[0]["product"] == "Laptop"
     assert result[1]["product"] == "Phone"
