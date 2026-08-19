@@ -50,3 +50,6 @@ class Order:
         self.customer = customer.strip()
         self.product = product.strip()
         self.category = category.strip()
+
+    def get_revenue(self):
+        return self.price * self.quantity
