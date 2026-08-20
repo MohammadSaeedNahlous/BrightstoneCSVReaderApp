@@ -16,7 +16,7 @@ A command-line Python application that reads order data from a CSV file, process
 
 ## Setup
 
-Requires Python 3.x. A virtual environment is recommended.
+Requires Python 3.12 or newer. A virtual environment is recommended.
 
 ```bash
 python -m venv .venv
