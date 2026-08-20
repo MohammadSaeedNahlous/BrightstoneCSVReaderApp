@@ -70,25 +70,27 @@ def main():
             )
         return 0
 
-    except FileNotFoundError as error:
-        logger.error(error)
-        print(f"Error:{error}")
-        return 1
+
 
     except InvalidCSVError as error:
         logger.error(error)
-        print(f"Error:{error}")
         return 1
 
     except InvalidCSVRow as error:
         logger.error(error)
-        print(f"Error:{error}")
         return 1
 
     except MissingColumnError as error:
         logger.error(error)
-        print(f"Error:{error}")
         return 1
+
+    except FileNotFoundError as error:
+        logger.error(error)
+        return 1
+
+    except OSError as error:
+        logger.error(error)
+        return 2
 
 
 if __name__ == "__main__":
