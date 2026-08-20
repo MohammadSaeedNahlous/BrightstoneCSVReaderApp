@@ -1,5 +1,7 @@
 import csv
-from classes.Order import Order
+from pathlib import Path
+
+from classes.order import Order
 from exceptions import (
     MissingColumnError,
     InvalidCSVRow,
@@ -8,7 +10,7 @@ from exceptions import (
 )
 
 
-def read_csv(file_path):
+def read_csv(file_path: str | Path) -> list[Order]:
 
     with open(file_path, newline="", encoding="utf-8") as file:
         reader = csv.DictReader(file)
@@ -23,7 +25,9 @@ def read_csv(file_path):
         }
         missing_columns = required_columns - set(reader.fieldnames or [])
         if missing_columns:
-            raise MissingColumnError(f"Missing columns: {', '.join(missing_columns)}")
+            raise MissingColumnError(
+                f"Missing columns: {', '.join(missing_columns)}"
+            )
         orders_data_list = []
         for row in reader:
             if any(value is None for value in row.values()):

@@ -1,4 +1,4 @@
-from classes.Order import Order
+from classes.order import Order
 from processing_logic import (
     get_top_products_by_revenue,
     get_top_spending_customers,
@@ -8,9 +8,11 @@ from processing_logic import (
 )
 
 
-def test_total_orders():
+def test_total_orders() -> None:
     orders = [
-        Order("1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"),
+        Order(
+            "1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"
+        ),
         Order("2", "2026-08-19", "Bob", "Phone", "Electronics", "5", "300"),
         Order("3", "2026-08-19", "Charlie", "Desk", "Furniture", "3", "400"),
     ]
@@ -20,9 +22,11 @@ def test_total_orders():
     assert result == 3
 
 
-def test_total_revenue():
+def test_total_revenue() -> None:
     orders = [
-        Order("1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"),
+        Order(
+            "1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"
+        ),
         Order("2", "2026-08-19", "Bob", "Phone", "Electronics", "5", "300"),
         Order("3", "2026-08-19", "Charlie", "Desk", "Furniture", "3", "400"),
     ]
@@ -32,14 +36,18 @@ def test_total_revenue():
     assert result == 4700
 
 
-def test_top_5_products_by_revenue():
+def test_top_5_products_by_revenue() -> None:
     orders = [
-        Order("1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"),
+        Order(
+            "1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"
+        ),
         Order("2", "2026-08-19", "Bob", "Phone", "Electronics", "5", "300"),
         Order("3", "2026-08-19", "Charlie", "Desk", "Furniture", "3", "400"),
         Order("4", "2026-08-19", "David", "Chair", "Furniture", "10", "80"),
         Order("5", "2026-08-19", "Eva", "Monitor", "Electronics", "4", "250"),
-        Order("6", "2026-08-19", "Frank", "Keyboard", "Electronics", "1", "50"),
+        Order(
+            "6", "2026-08-19", "Frank", "Keyboard", "Electronics", "1", "50"
+        ),
     ]
 
     result = get_top_products_by_revenue(orders)
@@ -50,13 +58,17 @@ def test_top_5_products_by_revenue():
     assert result[-1]["product"] == "Chair"
 
 
-def test_top_5_customers_by_spending():
+def test_top_5_customers_by_spending() -> None:
     orders = [
-        Order("1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"),
+        Order(
+            "1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"
+        ),
         Order("2", "2026-08-19", "Bob", "Phone", "Electronics", "5", "300"),
         Order("3", "2026-08-19", "Alice", "Desk", "Furniture", "3", "400"),
         Order("4", "2026-08-19", "Charlie", "Chair", "Furniture", "10", "80"),
-        Order("5", "2026-08-19", "David", "Monitor", "Electronics", "4", "250"),
+        Order(
+            "5", "2026-08-19", "David", "Monitor", "Electronics", "4", "250"
+        ),
         Order("6", "2026-08-19", "Bob", "Keyboard", "Electronics", "1", "50"),
         Order("7", "2026-08-19", "Charlie", "Mouse", "Electronics", "5", "40"),
         Order("8", "2026-08-19", "Eva", "Printer", "Electronics", "2", "300"),
@@ -73,9 +85,11 @@ def test_top_5_customers_by_spending():
     assert result[-1][0] == "Eva"
 
 
-def test_revenue_per_category():
+def test_revenue_per_category() -> None:
     orders = [
-        Order("1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"),
+        Order(
+            "1", "2026-08-19", "Alice", "Laptop", "Electronics", "2", "1000"
+        ),
         Order("2", "2026-08-19", "Bob", "Phone", "Electronics", "5", "300"),
         Order("3", "2026-08-19", "Charlie", "Desk", "Furniture", "3", "400"),
         Order("4", "2026-08-19", "David", "Chair", "Furniture", "10", "80"),

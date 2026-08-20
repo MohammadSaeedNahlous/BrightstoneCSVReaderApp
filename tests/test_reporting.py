@@ -1,16 +1,16 @@
+from pathlib import Path
 import pytest
-
 from report_logic import generate_markdown_report, generate_json_report
 import json
 
 
-def test_markdown_report(tmp_path):
+def test_markdown_report(tmp_path: Path) -> None:
     output_file = tmp_path / "report.md"
 
     generate_markdown_report(
         3,
         4700,
-        [{"product": "Laptop", "price": 1000}],
+        [{"product": "Laptop", "revenue": 1000.00}],
         [("Alice", 2000)],
         [("Electronics", 3000)],
         output_file,
@@ -24,7 +24,7 @@ def test_markdown_report(tmp_path):
     assert "€4,700.00" in content
 
 
-def test_markdown_invalid_output_path():
+def test_markdown_invalid_output_path() -> None:
     with pytest.raises(OSError):
         generate_markdown_report(
             3,
@@ -36,13 +36,13 @@ def test_markdown_invalid_output_path():
         )
 
 
-def test_json_report(tmp_path):
+def test_json_report(tmp_path: Path) -> None:
     output_file = tmp_path / "report.json"
 
     generate_json_report(
         3,
         4700,
-        [{"product": "Laptop", "price": 1000}],
+        [{"product": "Laptop", "revenue": 1000.0}],
         [("Alice", 2000)],
         [("Electronics", 3000)],
         output_file,
@@ -54,10 +54,10 @@ def test_json_report(tmp_path):
     print(data)
 
     assert data["total_number_of_order"] == 3
-    assert data["total_revenue"] == 4700
+    assert data["total_revenue"] == 4700.0
 
 
-def test_json_invalid_output_path():
+def test_json_invalid_output_path() -> None:
     with pytest.raises(OSError):
         generate_json_report(
             3,

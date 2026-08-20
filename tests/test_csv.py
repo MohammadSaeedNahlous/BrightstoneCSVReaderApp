@@ -1,15 +1,16 @@
+from pathlib import Path
+
 import pytest
 from csv_handling import read_csv
-from classes.Order import Order
+from classes.order import Order
 from exceptions import (
     InvalidCSVError,
     MissingColumnError,
     InvalidCSVRow,
-    InvalidOrderError,
 )
 
 
-def test_valid_csv(tmp_path):
+def test_valid_csv(tmp_path: Path) -> None:
 
     csv_file = tmp_path / "orders.csv"
 
@@ -26,7 +27,7 @@ def test_valid_csv(tmp_path):
     assert isinstance(orders[0], Order)
 
 
-def test_empty_csv(tmp_path):
+def test_empty_csv(tmp_path: Path) -> None:
 
     csv_file = tmp_path / "orders.csv"
 
@@ -39,7 +40,7 @@ def test_empty_csv(tmp_path):
         read_csv(csv_file)
 
 
-def test_missing_column(tmp_path):
+def test_missing_column(tmp_path: Path) -> None:
 
     csv_file = tmp_path / "orders.csv"
 
@@ -53,7 +54,7 @@ def test_missing_column(tmp_path):
         read_csv(csv_file)
 
 
-def test_invalid_csv_row(tmp_path):
+def test_invalid_csv_row(tmp_path: Path) -> None:
     csv_file = tmp_path / "broken.csv"
 
     csv_file.write_text(
@@ -66,7 +67,7 @@ def test_invalid_csv_row(tmp_path):
         read_csv(csv_file)
 
 
-def test_broken_row_due_missing_values(tmp_path):
+def test_broken_row_due_missing_values(tmp_path: Path) -> None:
 
     csv_file = tmp_path / "orders.csv"
 
