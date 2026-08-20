@@ -1,9 +1,9 @@
-from classes.Order import Order
+from classes.order import Order
 from exceptions import InvalidOrderError
 import pytest
 
 
-def test_valid_order():
+def test_valid_order() -> None:
     order = Order(
         "1",
         "2026-08-19",
@@ -19,7 +19,7 @@ def test_valid_order():
     assert order.price == 100
 
 
-def test_invalid_id_order():
+def test_invalid_id_order() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "invalid",
@@ -32,7 +32,7 @@ def test_invalid_id_order():
         )
 
 
-def test_negative_id_order():
+def test_negative_id_order() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "-1",
@@ -45,7 +45,7 @@ def test_negative_id_order():
         )
 
 
-def test_no_customer_in_order():
+def test_no_customer_in_order() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "32",
@@ -58,7 +58,7 @@ def test_no_customer_in_order():
         )
 
 
-def test_no_product_in_order():
+def test_no_product_in_order() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "32",
@@ -71,7 +71,7 @@ def test_no_product_in_order():
         )
 
 
-def test_no_category_in_order():
+def test_no_category_in_order() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "32",
@@ -84,7 +84,7 @@ def test_no_category_in_order():
         )
 
 
-def test_no_order_date():
+def test_no_order_date() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "32",
@@ -97,7 +97,7 @@ def test_no_order_date():
         )
 
 
-def test_invalid_order_date():
+def test_invalid_order_date() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "32",
@@ -110,7 +110,7 @@ def test_invalid_order_date():
         )
 
 
-def test_invalid_quantity():
+def test_invalid_quantity() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "1",
@@ -123,7 +123,7 @@ def test_invalid_quantity():
         )
 
 
-def test_negative_quantity():
+def test_negative_quantity() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "1",
@@ -136,7 +136,7 @@ def test_negative_quantity():
         )
 
 
-def test_invalid_price():
+def test_invalid_price() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "1",
@@ -149,7 +149,7 @@ def test_invalid_price():
         )
 
 
-def test_negative_price():
+def test_negative_price() -> None:
     with pytest.raises(InvalidOrderError):
         Order(
             "1",

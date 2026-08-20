@@ -5,8 +5,15 @@ from exceptions import InvalidOrderError
 
 class Order:
     def __init__(
-        self, order_id, order_date, customer, product, category, quantity, price
-    ):
+        self,
+        order_id: str,
+        order_date: str,
+        customer: str,
+        product: str,
+        category: str,
+        quantity: str,
+        price: str,
+    ) -> None:
 
         if not customer.strip():
             raise InvalidOrderError("Customer cannot be empty.")
@@ -53,5 +60,5 @@ class Order:
         self.product = product.strip()
         self.category = category.strip()
 
-    def get_revenue(self):
+    def get_revenue(self) -> float:
         return self.price * self.quantity

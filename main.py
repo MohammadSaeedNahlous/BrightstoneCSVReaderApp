@@ -2,21 +2,21 @@ import argparse
 import logging
 import sys
 
-from processing_logic import (
-    get_total_orders,
-    get_total_revenue,
-    get_top_products_by_revenue,
-    get_top_spending_customers,
-    get_revenue_per_category,
-)
-from report_logic import generate_json_report, generate_markdown_report
 from csv_handling import read_csv
 from exceptions import (
-    InvalidCSVRow,
     InvalidCSVError,
-    MissingColumnError,
+    InvalidCSVRow,
     MismatchReportFormat,
+    MissingColumnError,
 )
+from processing_logic import (
+    get_revenue_per_category,
+    get_top_products_by_revenue,
+    get_top_spending_customers,
+    get_total_orders,
+    get_total_revenue,
+)
+from report_logic import generate_json_report, generate_markdown_report
 from utils import validate_report_format
 
 logger = logging.getLogger(__name__)
@@ -27,7 +27,8 @@ logging.basicConfig(
 )
 
 parser = argparse.ArgumentParser(
-    description="Generate a report from a Brightstone Logistics orders CSV file."
+    description="Generate a report from "
+    + "a Brightstone Logistics orders CSV file."
 )
 parser.add_argument(
     "--input", required=True, help="Required - The name of the input CSV file."
@@ -43,11 +44,13 @@ parser.add_argument(
     "--format",
     choices=["markdown", "json"],
     default="markdown",
-    help="Optional - Default markdown - The format of the generated report, either markdown(.mk) or JSON (.json).",
+    help="Optional - Default markdown"
+    + " - The format of the generated report, either markdown(.mk)"
+    + " or JSON (.json).",
 )
 
 
-def main():
+def main() -> int:
     arguments = parser.parse_args()
     try:
         orders = read_csv(arguments.input)
@@ -58,7 +61,7 @@ def main():
         top_5_customers_by_total_spend = get_top_spending_customers(orders)
         revenue_by_category = get_revenue_per_category(orders)
 
-        validate_report_format(arguments.output,arguments.format)
+        validate_report_format(arguments.output, arguments.format)
 
         if arguments.format.lower() == "json":
             generate_json_report(
