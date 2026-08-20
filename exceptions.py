@@ -14,5 +14,5 @@ class InvalidOrderError(Exception):
     pass
 
 
-class MissmatchReportFormat(Exception):
+class MismatchReportFormat(Exception):
     pass
